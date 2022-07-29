@@ -1,4 +1,4 @@
-# React Rails Monolith
+# React Rails Charizard
 
 ## Background
 
