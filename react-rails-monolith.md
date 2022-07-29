@@ -1,5 +1,7 @@
 # React Rails Pikachu
 
+who is yellow
+
 ## Background
 
 Congratulations! You've made it to the point in the curriculum where you have learned all you need to know to create a React on Rails application. This is super exciting! Now let's actually go through and put it all together.
