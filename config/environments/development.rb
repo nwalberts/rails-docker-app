@@ -3,6 +3,7 @@ require "active_support/core_ext/integer/time"
 # Rails.application.config.hosts = nil
 
 Rails.application.configure do
+  config.hosts << "rails-docker-app-2.onrender.com"
   # config.hosts << wizards.fly.dev
   # Settings specified here will take precedence over those in config/application.rb.
 
