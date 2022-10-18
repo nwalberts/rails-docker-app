@@ -1,7 +1,9 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.config.hosts = nil
+
 Rails.application.configure do
-  config.hosts << wizards.fly.dev
+  # config.hosts << wizards.fly.dev
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time

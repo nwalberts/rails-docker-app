@@ -1,6 +1,10 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.config.hosts = nil
+
 Rails.application.configure do
+  # config.hosts << wizards.fly.dev
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
