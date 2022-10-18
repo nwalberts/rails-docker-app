@@ -1,63 +1,72 @@
-# React Rails Pikachu
-
-who is yellow
+# React Rails Monolith
 
 ## Background
 
-Congratulations! You've made it to the point in the curriculum where you have learned all you need to know to create a React on Rails application. This is super exciting! Now let's actually go through and put it all together.
+Let's actually go through our stack of technologies and put all of our understanding of React and Rails together.
 
-There is a pressing need to review breakfast cereals. There's so much to talk about and so few places to do it. You're going to be creating an amazing app to give everyone the place they've so desperately wanted to discuss the cereals of the world.
+**Our Job:** There is a pressing need to review breakfast cereals. There's so much to talk about and so few places to do it. You're going to be creating an amazing cereal discovery app to give everyone a place to discuss the cereals of the world. 
 
 Beware, this assignment is going to take a good bit of time and is focused on getting you to use our whole stack. It will take quite a bit of time just to get the basic application up and running. Don't be frustrated. Learning all of these technologies takes a good bit of time, so does learning how to put them all together!
 
 You've been provided with a boilerplate that has React already setup and ready to go, complete with a testing setup! Run the following commands in one tab:
 
 ```
-$ bundle install
-$ rake db:create
-$ rails s
+et get react-rails-monolith
+bundle install
+rake db:create
+rails s
 ```
 
 And in another tab run the following:
 
 ```
-$ yarn install
-$ yarn run dev:client
+yarn install
+yarn run dev:client
 ```
 
 This should get everything running! You should see no errors in the console and a very basic message displayed on the page.
 
+Your react code runs from the `app/javascript/packs` file (this is your new `main.js` file, and renders your app), and your components can be placed in `app/javascript/components`. Your task is the develop both the React Frontend and Rails backend in order to build out the features of the app.
+
 ## Instructions
 
 1. First, we must get this application setup with some actual React components.
-Create a component called `App` that displays a basic header about cereals. This will be the start of your React application.
+Create a component called `App` that displays a basic header about cereals e.g. "Welcome to the Sensational Cereals App". This will be the start of your React application. It's important to ensure that this very basic, static page renders before adding more to your application.
 
-2. Next, let's get your Router setup. In the `App` component, change the text about cereals to be a React Router that has two routes: a cereals index route (`/cereals`) that will eventually display all the cereals and a dynamic cereals show route (`/cereals/:id`) that displays the information for a specific cereal. Remember that you need to define a route on your Rails side that serves up a view with the correct div to render the React app as defined in `application.js`. (HINT: Look at how this is done for the root path in the `config/routes.rb` file)
+2. Next, let's get your React Router setup. In the `App` component, change the text about cereals to use React Router with two routes: a cereals index route (`/cereals`) that will eventually display all the cereals, and a dynamic cereals show route (`/cereals/:id`) that displays the information for a specific cereal. For every route you setup in React Router, you'll need to also handle that route in your Rails backend. 
 
-3. You'll need to make `CerealsIndexContainer` and `CerealShowContainer` components that the React Router will render at the appropriate routes. Make these components that for now will just show some basic text to make sure things are hooked up the right way. Make sure to add these components to the Router.
+3. **Index of Cereals:** Define a CerealsIndexContainer component that will fetch to your rails application in order to retrieve cereal data for rendering. You'll need a migration, a model, and a controller for your cereals, as well as routes for navigation, and API routes that you can fetch to. Don't forget to namespace your API controller as well. Ensure that this feature is available when navigating to "/cereals". The page should show all cereals that you have seeded in a list, displaying only their name.
 
-4. Awesome! We've got a basic React setup and we should be able to see the two React containers on the page when we go to the appropriate route.
+    Cereals should have the following attributes: name (string, required), brand (string, required) and sugar-level (string, optional). If you would like to add other attributes, go for it!
 
-Now we actually need to display some real information. This is going to involve setting up an API endpoint and a model that gets sent back as JSON. Let's get our cereal model setup. This should have a name and description for now. Create the model, add the appropriate validations and then define an API endpoint that renders back all the cereals as JSON. Since it is sending back all the cereals, this should be your index action within your API controller.
+3. **Cereals Show Page:** Define a CerealsShowContainer component that should display more information about a specific cereal (all of its attributes should be on the screen). Update your code to ensure that you are fetching to the right endpoint in your backend API controller as well. 
 
-5. Test that API controller! Remember, this is going to involve making model tests for your `Cereal` model as well. (Come on, you didn't really think we were going to get away from testing, did you?)
+    Once done, update the "/cereals" page to make every cereal name a link to a cereal show page. You'll need to use React Router's `Link` component for this step. 
 
-6. Now it's time to go back into our React application and get some information for our `CerealsIndexContainer` to display. Make a fetch call in the appropriate lifecycle method to get all the cereals from your API and display the title of each cereal in a list. (HINT: This might be a good place to create a presentational component that you could render an array of React components!)
+4. Test that API controller with controller tests! Every API controller endpoint should have a test for it (:index and :show). Make sure to tackle the reading on API controller tests before beginning this step (if that material has been released for your class!).
 
-7. Time to test those React components! Follow the testing patterns we setup earlier in the cohort to get the `CerealsIndexContainer` and the presentational component it renders tested.
+## Bonus Challenge
 
-## Extra Challenge
+5. At "/cereals/new", a user should see a new cereal form (rendered in React). Ensure that this form posts to your API controller and persists a new cereal. 
 
-8. Follow the same API-Test-Component-Test workflow to setup the `CerealShowContainer`. This should have an API endpoint that returns one specific cereal based on the id in the URL, a fetch call that gets the cereal's information and a presentational component that displays all of
-that information.
+    You'll need to also redirect away from this form page to the newly created Cereal Show page if submitted successfully. Use the `Redirect` component from React Router for this. 
 
-9. Finally, refactor the presentational component that renders the link to each cereal's show page to use React Router `Link` components so that you can navigate about the app seamlessly and without page reloads. Refactor any tests that need to be to account for this link component being rendered (Hint, you should need to if your tests are written well).
+6. If filled out incorrectly, ActiveRecord validations should be displayed on the screen. Make sure that you return those error messages in the response of your new cereal POST request. Grab them from the response body, and set them in some error state for display. This will be tricky!
+
+7. STYLE IT! Foundation is available in this application already. Ensure the following: 
+
+    * add a custom google font to your website 
+    * have a styled navbar with navigation buttons
+    * show each cereal on the index page as a box in a grid that is three cereals wide. After the first three, your app should show the next three cereals in a row. 
+    * display a warning message on the cereal show page if the sugar levels of a cereal are too high (you can determine the condition for this). 
+    * add a new column to your cereals "image", that can store a url to an image of a cereal on the internet. You won't be able to upload an image just yet, so just copy an image url from the web. Update your new cereal form accordingly. 
+    * ensure that all elements are spaced out from one another with margin (and padding if needed). No elements should be flush against one another, and no elements should be right up against the side of the screen (except your navbar)
+
+Continue to add flair as you see fit! 
 
 ## Final Words
 
 This is a bear of an assignment! It requires a lot of files and code and really ties together everything you've learned thus far as a Launcher.
-
-If you are struggling with this process and cannot get React up and running, try setting up the Webpacker gem by following the "Adding Webpacker To Rails" Article.
 
 If you complete this assignment, you should feel *incredibly* confident about your ability to use our *entire* stack.
 
