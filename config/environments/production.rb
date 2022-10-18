@@ -1,6 +1,6 @@
 require "active_support/core_ext/integer/time"
 
-Rails.application.config.hosts = nil
+# Rails.application.config.hosts = nil
 
 Rails.application.configure do
   # config.hosts << wizards.fly.dev
