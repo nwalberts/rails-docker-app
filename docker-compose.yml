@@ -28,6 +28,7 @@ services:
     volumes:
       - .:/myapp
     command:
+      - /bin/bash
       - |
         rails db:migrate:reset
         rails db:seed
