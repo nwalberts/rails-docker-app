@@ -34,8 +34,8 @@ ENV config.hosts "wizards.fly.dev"
 RUN yarn install 
 RUN bundle install 
 
-ENTRYPOINT ["bin/rails"] 
-CMD ["s", "-b", "0.0.0.0"]
+# ENTRYPOINT ["bin/rails"] 
+# CMD ["s", "-b", "0.0.0.0"]
 
 EXPOSE 3000
 
