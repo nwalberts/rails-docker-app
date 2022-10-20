@@ -29,6 +29,7 @@ services:
       - .:/myapp
     command:
       - /bin/bash
+      - -c 
       - |
         rails db:migrate:reset
         rails db:seed
