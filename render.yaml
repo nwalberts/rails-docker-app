@@ -1,6 +1,6 @@
 databases:
   - name: render-rails-app
-    databaseName: render-rails-app
+    databaseName: cool-app
     user: user
 
 services:
