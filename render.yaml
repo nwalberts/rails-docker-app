@@ -1,7 +1,6 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: cool-app
 
 services:
   - type: web
