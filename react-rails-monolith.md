@@ -75,3 +75,6 @@ Remember to use your `debugger`s and `pry`s to get yourself through the difficul
 Also, don't forget to style as you go with your React components! If you wait until the end it's going to be a far bigger pain to fit all the styling in at once. Then you can refine how it all fits together at the end!
 
 **GOOD LUCK!**
+
+
+docker Error response from daemon invalid volume specification: invalid mount config for type "bind": invalid mount path: 'app' mount path must be absolute
