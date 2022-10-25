@@ -3,6 +3,8 @@ require "active_support/core_ext/integer/time"
 # Rails.application.config.hosts = nil
 
 Rails.application.configure do
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
+
   # config.hosts << wizards.fly.dev
 
   # Settings specified here will take precedence over those in config/application.rb.
